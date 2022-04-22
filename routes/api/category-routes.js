@@ -37,7 +37,7 @@ router.get("/:id", (req, res) => {
   })
     .then((dbCatData) => {
       if (!dbCatData) {
-        res.status(400).json({ message: "category not found" });
+        res.status(400).json({ message: "404 | category nonexistant" });
         return;
       }
       res.json(dbCatData);
@@ -70,7 +70,7 @@ router.put("/:id", (req, res) => {
       if (!dbCatData[0]) {
         res
           .status(404)
-          .json({ messsage: "Category was not found with your request" });
+          .json({ messsage: "404 | category nonexistant" });
         return;
       }
       res.json(dbCatData);
@@ -91,7 +91,7 @@ router.delete("/:id", (req, res) => {
       if (!dbCatData) {
         res
           .status(404)
-          .json({ message: "Category was not found with your request" });
+          .json({ message: "404 | category nonexistant" });
       }
       res.json(dbCatData);
     })
