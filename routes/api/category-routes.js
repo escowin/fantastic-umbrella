@@ -5,7 +5,6 @@ const { Category, Product } = require("../../models");
 
 router.get("/", (req, res) => {
   // find all categories
-  // be sure to include its associated Products
   Category.findAll({
     order: [["created_at", "DESC"]],
     include: [
@@ -16,15 +15,11 @@ router.get("/", (req, res) => {
     ],
   })
     .then((dbCategoryData) => res.json(dbCategoryData))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    .catch((err) => res.status(500).json(err));
 });
 
 router.get("/:id", (req, res) => {
   // find one category by its `id` value
-  // be sure to include its associated Products
   Category.findOne({
     where: { id: req.params.id },
     include: [
@@ -53,10 +48,7 @@ router.post("/", (req, res) => {
     category_name: req.body.category_name,
   })
     .then((dbCategoryData) => res.json(dbCategoryData))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    .catch((err) => res.status(500).json(err));
 });
 
 router.put("/:id", (req, res) => {
@@ -71,15 +63,12 @@ router.put("/:id", (req, res) => {
   )
     .then((dbCategoryData) => {
       if (!dbCategoryData) {
-        req.status(404).json({ message: "category does not exist" });
+        res.status(404).json({ message: "category does not exist" });
         return;
       }
       res.json(dbCategoryData);
     })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    .catch((err) => res.status(500).json(err));
 });
 
 router.delete("/:id", (req, res) => {
@@ -94,10 +83,7 @@ router.delete("/:id", (req, res) => {
       }
       res.json(dbCategoryData);
     })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    .catch((err) => res.status(500).json(err));
 });
 
 module.exports = router;
