@@ -1,7 +1,7 @@
 {
-  "name": "module-13-challenge-orm",
-  "version": "1.0.0",
-  "description": "",
+  "name": "fantastic-umbrella",
+  "version": "2.0.0",
+  "description": "e-commerce backend | orm exercise",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@work.github.com:coding-boot-camp/module-13-challenge-orm.git"
+    "url": "git@github.com:escowin/fantastic-umbrella.git"
   },
   "keywords": [],
   "author": "",
