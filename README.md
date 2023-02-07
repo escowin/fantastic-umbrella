@@ -1,24 +1,42 @@
-# e-commerce
-  * 13. Object-Relational Mapping (ORM) Challenge: E-commerce Back End
-  * | Project Repo | https://github.com/escowin/e-commerce
-  
-  ## DESCRIPTION
-  * Building the back end for an e-commerce site using Express.js API and configured via Sequelize to interact with the MySQL database
-  
-  ## TABLE OF CONTENTS
-  * [Installation](#INSTALLATION)
-  
-  * [Tests](#TESTS)
 
-  * [Questions](#QUESTIONS)
-  
-  ## INSTALLATION
-  * clone repo
-  * CLI | npm i 
+# fantastic-umbrella
 
-  ## TESTS
-  * CLI | node server
+## Description
+[Repo](https://github.com/escowin/fantastic-umbrella)
 
-  ## QUESTIONS (CONTACT)
-  * edwin@escowinart.com
-  * | REPO  | [GitHub](https://github.com/escowin)
+
+e-commerce backend ORM exercise in where I established the model columns & relationships. I then employed ORM techniques to carry out CRUD operations on the database, and created a REST API to expose these operations.
+
+## Table of Contents
+- [Installation](#installation)
+- [Code](#code)
+- [Test](#test)
+- [Screenshots](#screenshots)
+
+- [Author](#author)
+
+## Installation
+Run the following command to install necessary dependencies:
+```
+$ npm i; npm start;
+```
+
+## Test
+Run the following command to run tests:
+```
+
+```
+
+## Code
+- Languages: Javascript, SQL
+- Frameworks: Node, Express
+- Libraries: Sequelize, mysql2, dotenv
+- Database: mySQL
+
+## Screenshots
+![fantastic-umbrella](./images/fantastic-umbrella.jpg)
+
+## Author
+### Edwin M. Escobar
+- [Email](mailto:edwin@escowinart.com)
+- [GitHub](https://github.com/escowin)
