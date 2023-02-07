@@ -4,43 +4,26 @@ const { Category, Product } = require("../../models");
 // The `/api/categories` endpoint
 
 router.get("/", (req, res) => {
+  // find all categories
   Category.findAll({
-    attributes: ["id", "category_name"],
-    // include Products association
-    include: [
-      {
-        model: Product,
-        attributes: ["id", "product_name", "price", "stock", "category_id"],
-      },
-    ],
+    include: [Product],
   })
-    .then((dbCatData) => res.json(dbCatData))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    .then((dbCategoryData) => res.json(dbCategoryData))
+    .catch((err) => res.status(500).json(err));
 });
 
 router.get("/:id", (req, res) => {
+  // find one category by its `id` value
   Category.findOne({
-    where: {
-      id: req.params.id,
-    },
-    attributes: ["id", "category_name"],
-    // include Products association
-    include: [
-      {
-        model: Product,
-        attributes: ["id", "product_name", "price", "stock", "category_id"],
-      },
-    ],
+    where: { id: req.params.id },
+    include: [Product],
   })
-    .then((dbCatData) => {
-      if (!dbCatData) {
-        res.status(400).json({ message: "404 | category nonexistant" });
+    .then((dbCategoryData) => {
+      if (!dbCategoryData) {
+        res.status(404).json({ message: "category does not exist" });
         return;
       }
-      res.json(dbCatData);
+      res.json(dbCategoryData);
     })
     .catch((err) => {
       console.log(err);
@@ -49,56 +32,47 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+  // create a new category
   Category.create({
     category_name: req.body.category_name,
   })
-    .then((dbCatData) => res.json(dbCatData))
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
-    });
+    .then((dbCategoryData) => res.json(dbCategoryData))
+    .catch((err) => res.status(500).json(err));
 });
 
 router.put("/:id", (req, res) => {
-  Category.update(req.body, {
-    category_name: req.body.category_name,
-    where: {
-      id: req.params.id,
+  // update a category by its `id` value
+  Category.update(
+    {
+      category_name: req.body.category_name,
     },
-  })
-    .then((dbCatData) => {
-      if (!dbCatData[0]) {
-        res
-          .status(404)
-          .json({ messsage: "404 | category nonexistant" });
+    {
+      where: { id: req.params.id },
+    }
+  )
+    .then((dbCategoryData) => {
+      if (!dbCategoryData) {
+        res.status(404).json({ message: "category does not exist" });
         return;
       }
-      res.json(dbCatData);
+      res.json(dbCategoryData);
     })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    .catch((err) => res.status(500).json(err));
 });
 
 router.delete("/:id", (req, res) => {
+  // delete a category by its `id` value
   Category.destroy({
-    where: {
-      id: req.params.id,
-    },
+    where: { id: req.params.id },
   })
-    .then((dbCatData) => {
-      if (!dbCatData) {
-        res
-          .status(404)
-          .json({ message: "404 | category nonexistant" });
+    .then((dbCategoryData) => {
+      if (!dbCategoryData) {
+        res.status(404).json({ message: "category does not exist" });
+        return;
       }
-      res.json(dbCatData);
+      res.json(dbCategoryData);
     })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    .catch((err) => res.status(500).json(err));
 });
 
 module.exports = router;
